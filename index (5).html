@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="연구행정 업무를 위한 생성형 AI 실무 참고 — 한글 파일 대응, AI 도구 지형도, 업무별 선택, 복사해서 쓰는 프롬프트 13개.">
+<meta name="theme-color" content="#16213F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="연구행정 업무를 위한 생성형 AI 실무 참고">
+<meta property="og:description" content="사전설문에 주신 질문에 대한 답과 복사해서 쓰는 프롬프트 13개.">
+<meta property="og:locale" content="ko_KR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316213F'/%3E%3Cpath d='M8 22V10h3.4l4.6 8.2L20.6 10H24v12h-2.9v-7.4L17 22h-2l-4.1-7.4V22z' fill='%23fff'/%3E%3C/svg%3E">
+<title>연구행정 업무를 위한 생성형 AI 실무 참고 — 2026.9.4. 오송</title>
+<style>
+  :root{
+    --ink:#16213F;
+    --ink-2:#3D4763;
+    --ink-3:#6B7490;
+    --gold:#8F6900;
+    --gold-bg:#FBF4E2;
+    --red:#A03A37;
+    --red-bg:#FAEDEC;
+    --green:#255C40;
+    --green-bg:#EAF3EE;
+    --rule:#D9DDE5;
+    --rule-2:#EDEFF4;
+    --surface:#F4F6F9;
+    --paper:#FFFFFF;
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,
+           "Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"D2Coding",Consolas,"Malgun Gothic",monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:1.5rem}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:15.5px;line-height:1.78;
+    -webkit-font-smoothing:antialiased;word-break:keep-all;
+  }
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+  /* ── 머리말 ── */
+  header{border-bottom:1px solid var(--rule);padding:56px 0 40px}
+  .doc-meta{font-size:13px;color:var(--ink-3);letter-spacing:.02em;margin-bottom:14px}
+  h1{font-size:clamp(28px,4.2vw,40px);line-height:1.28;margin:0 0 18px;font-weight:800;letter-spacing:-.02em}
+  .lede{font-size:17px;color:var(--ink-2);max-width:62ch;margin:0}
+
+  /* ── 히어로: 여러분이 물어보신 것 ── */
+  .asked{margin:38px 0 0;padding:0;list-style:none}
+  .asked li{
+    border-left:3px solid var(--gold);padding:2px 0 2px 18px;margin:0 0 16px;
+    font-size:16.5px;color:var(--ink);max-width:70ch;
+  }
+  .asked a{color:var(--gold);text-decoration:none;border-bottom:1px solid #E3D2A8;
+           font-size:13.5px;margin-left:6px;white-space:nowrap}
+  .asked a:hover,.asked a:focus-visible{border-bottom-color:var(--gold)}
+  .asked .who{display:block;font-size:13px;color:var(--ink-3);margin-top:2px}
+
+  /* ── 본문 레이아웃 ── */
+  .layout{display:grid;grid-template-columns:212px minmax(0,1fr);gap:56px;padding:48px 0 96px;align-items:start}
+  nav.toc{position:sticky;top:28px;font-size:13.5px;border-right:1px solid var(--rule-2);padding-right:20px}
+  nav.toc p{margin:0 0 12px;font-size:12.5px;color:var(--ink-3)}
+  nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+  nav.toc li{counter-increment:t;margin:0 0 9px;line-height:1.5}
+  nav.toc a{color:var(--ink-2);text-decoration:none;display:block}
+  nav.toc a::before{content:counter(t) ".";color:var(--ink-3);margin-right:7px;font-variant-numeric:tabular-nums}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--gold)}
+
+  section{padding-top:8px;margin-bottom:64px;scroll-margin-top:24px}
+  h2{font-size:23px;font-weight:800;margin:0 0 6px;letter-spacing:-.015em;line-height:1.35}
+  .h2sub{color:var(--ink-3);font-size:14.5px;margin:0 0 24px;max-width:66ch}
+  h3{font-size:16.5px;font-weight:700;margin:32px 0 10px;color:var(--ink)}
+  p{margin:0 0 14px;max-width:72ch}
+  .muted{color:var(--ink-3);font-size:14px}
+
+  /* ── 표 ── */
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14.5px}
+  th{background:var(--ink);color:#fff;font-weight:700;text-align:left;padding:11px 13px;font-size:14px}
+  td{border:1px solid var(--rule);padding:11px 13px;vertical-align:top}
+  tbody tr:nth-child(even) td{background:#FBFCFD}
+  td.no{color:var(--red);font-weight:700}
+  td.yes{color:var(--green);font-weight:700}
+
+  /* ── 강조 상자 ── */
+  .note{border-left:3px solid var(--ink);background:var(--surface);padding:16px 20px;margin:20px 0;max-width:74ch}
+  .note.warn{border-left-color:var(--red);background:var(--red-bg)}
+  .note.ok{border-left-color:var(--green);background:var(--green-bg)}
+  .note.gold{border-left-color:var(--gold);background:var(--gold-bg)}
+  .note p:last-child{margin-bottom:0}
+  .note strong{font-weight:800}
+
+  /* ── 프롬프트 카드 ── */
+  .pcard{border:1px solid var(--rule);margin:0 0 16px;background:var(--paper)}
+  .phead{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;
+          padding:13px 16px;border-bottom:1px solid var(--rule-2);background:#FAFBFD}
+  .pnum{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:800;font-size:14px}
+  .ptitle{font-weight:700;font-size:15.5px}
+  .pwhen{color:var(--ink-3);font-size:13.5px;flex-basis:100%;margin-top:-4px}
+  .pbody{position:relative}
+  pre{margin:0;padding:16px 16px 16px;font-family:var(--mono);font-size:13.5px;
+      line-height:1.72;white-space:pre-wrap;color:var(--ink-2);background:var(--paper)}
+  .copy{position:absolute;top:10px;right:10px;border:1px solid var(--rule);background:#fff;
+        color:var(--ink-2);font-family:var(--sans);font-size:12.5px;padding:5px 11px;cursor:pointer}
+  .copy:hover{border-color:var(--ink-3)}
+  .copy:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .copy[data-done="1"]{color:var(--green);border-color:#B9D3C4;background:var(--green-bg)}
+
+  /* ── 신호등 ── */
+  .lights{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:18px 0 8px}
+  .light{border:1px solid var(--rule);padding:16px 18px}
+  .light h4{margin:0 0 8px;font-size:15.5px;font-weight:800}
+  .light ul{margin:0;padding-left:17px;font-size:14px;color:var(--ink-2)}
+  .light li{margin-bottom:4px}
+  .light.g{background:var(--green-bg);border-color:#C3DACE}.light.g h4{color:var(--green)}
+  .light.y{background:var(--gold-bg);border-color:#E6D5A9}.light.y h4{color:var(--gold)}
+  .light.r{background:var(--red-bg);border-color:#E2C2C0}.light.r h4{color:var(--red)}
+
+  /* ── QA ── */
+  .qa{border-top:1px solid var(--rule-2);padding:18px 0}
+  .qa:first-of-type{border-top:none}
+  .qa .q{font-weight:700;margin:0 0 8px}
+  .qa .a{margin:0;color:var(--ink-2)}
+
+  footer{border-top:1px solid var(--rule);padding:28px 0 64px;font-size:13.5px;color:var(--ink-3)}
+  footer p{max-width:76ch;margin:0 0 8px}
+
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;gap:0;padding-top:28px}
+    nav.toc{position:static;border-right:none;border-bottom:1px solid var(--rule-2);
+            padding:0 0 20px;margin-bottom:32px}
+    nav.toc ol{columns:2;column-gap:20px}
+    header{padding:36px 0 28px}
+  }
+  @media print{
+    nav.toc,.copy{display:none}
+    .layout{grid-template-columns:1fr}
+    section{break-inside:avoid}
+    body{font-size:11pt}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="doc-meta">연구행정 업무 효율성 제고를 위한 생성형 AI 활용 &nbsp;|&nbsp; 2026. 9. 4.(금) &nbsp;|&nbsp; 오송보건의료행정타운</div>
+    <h1>강의에서 다 못 드린 답</h1>
+    <p class="lede">사전설문에 적어 주신 질문 가운데 3시간 안에 다루지 못한 것들을 여기에 정리했습니다.
+      필요한 항목만 골라 보시면 됩니다. 프롬프트는 복사해서 그대로 쓰셔도 됩니다.</p>
+
+    <ul class="asked">
+      <li>“AI 플랫폼 무료버전 100% 활용하는 요령도 알려주세요. AI 프로그램별 비교 후 각각의 장단점 공유 및 유료버전 추천”
+        <a href="#tools">4장으로</a><a href="#free">5장으로</a></li>
+      <li>“특별히 인식을 잘 하는 파일 형식이 있는지 궁금합니다. PDF, 한글, Word 중 어느 파일이 가장 인식을 잘해서 파일에 대한 정보 습득이 좋은지?”
+        <a href="#hwp">2장으로</a></li>
+      <li>“업무 지침, 규정, 관련 참고 문서를 주제별로 업로드하고, 필요 시 해당 문서 내의 근거를 기반으로만 정확하게 답변을 생성하고 문서를 만들어 주는 기능”
+        <a href="#tools">4장으로</a></li>
+      <li>“내부망에서 운영되고 있는 AI의 활용법이 궁금합니다. 외부망 AI 도구와 연계하여 활용할 수 있는 방안”
+        <a href="#tools">4장으로</a></li>
+      <li>“자료 작성 시 작성 형식(자간 등) 자동화 방법”
+        <a href="#etc">8장으로</a></li>
+      <li>“각 조항을 비교하여 어느 조항에 해당되는지 비교해보고 싶음”
+        <a href="#prompts">7장으로</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="wrap layout">
+
+  <nav class="toc" aria-label="목차">
+    <p>목차</p>
+    <ol>
+      <li><a href="#hwp">한글 파일은 어떻게 넣습니까</a></li>
+      <li><a href="#formats">자료 형태별 대응</a></li>
+      <li><a href="#tools">AI 도구, 네 갈래</a></li>
+      <li><a href="#free">무료로 어디까지</a></li>
+      <li><a href="#match">업무별로 무엇을 쓸까</a></li>
+      <li><a href="#prompts">복사해서 쓰는 프롬프트</a></li>
+      <li><a href="#check">검증과 입력 기준</a></li>
+      <li><a href="#etc">나머지 질문에 짧게</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+  <!-- 1 -->
+  <section id="hwp">
+    <h2>한글 파일은 어떻게 넣습니까</h2>
+    <p class="h2sub">사전설문 자료 형태 문항에서 응답하신 여섯 분 모두가 HWP·HWPX를 선택하셨습니다. 그래서 이 질문이 가장 먼저입니다. 다만 도구마다 처리 방식이 다르고, 지원 범위는 자주 바뀝니다. 아래는 각 사의 공식 안내 기준이며 쓰기 전에 한 번 확인해 보시는 편이 확실합니다.</p>
+
+    <table>
+      <thead><tr><th style="width:22%">도구</th><th style="width:26%">HWP · HWPX</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td>ChatGPT</td><td>환경에 따라 다릅니다</td>
+            <td>공식 지원 형식 안내에는 HWP·HWPX가 명시되어 있지 않습니다. 열리면 그대로 쓰시고, 안 되면 아래 세 가지로 넘기십시오.</td></tr>
+        <tr><td>Gemini</td><td class="yes">지원 형식에 포함되어 있습니다</td>
+            <td>구글 공식 도움말이 HWP·HWPX를 지원 문서 형식으로 안내합니다. 계정과 기능 조건에 따라 달라질 수 있으니 확인하십시오.</td></tr>
+        <tr><td>Claude</td><td class="no">지원하지 않습니다</td>
+            <td>안내된 업로드 형식은 PDF·DOCX·CSV·TXT·HTML·ODT·RTF·EPUB·JSON·XLSX입니다. HWP·HWPX는 여기에 포함되어 있지 않습니다.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>막혔을 때 넘어가는 세 가지</h3>
+    <table>
+      <thead><tr><th style="width:7%">순서</th><th style="width:30%">방법</th><th>언제 쓰나</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>본문을 복사해서 붙여넣기</td>
+            <td>가장 확실합니다. 파일 업로드가 막힌 환경에서도 됩니다. 강의 때 법령 실습에서 쓴 방식이 이것입니다.</td></tr>
+        <tr><td>2</td><td>한글에서 PDF로 저장한 뒤 올리기</td>
+            <td>표와 서식이 살아 있습니다. 다만 스캔해서 만든 PDF는 글자를 인식하지 못할 수 있습니다.</td></tr>
+        <tr><td>3</td><td>다른 이름으로 저장 → DOCX</td>
+            <td>표가 많은 문서에 유리합니다. 서식은 일부 깨집니다.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note gold">
+      <p><strong>참고할 만한 정책 흐름</strong><br>
+      2026년 4월 국가인공지능전략위원회·행정안전부·문화체육관광부는 온나라시스템 등 공공 문서 유통 채널에서
+      HWP 첨부를 제한하고 HWPX 전환을 추진한다고 밝혔습니다. HWPX는 XML 기반이라 기계가 읽기에 유리합니다.
+      앞으로 새로 만드는 문서는 HWPX로 저장해 두시는 편이 낫습니다.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="formats">
+    <h2>자료 형태별 대응</h2>
+    <p class="h2sub">어떤 형식으로 주느냐가 결과의 정확도를 좌우합니다.</p>
+    <table>
+      <thead><tr><th style="width:22%">자료 형태</th><th style="width:26%">권장하는 방법</th><th>주의할 점</th></tr></thead>
+      <tbody>
+        <tr><td>한글 (HWP·HWPX)</td><td>본문 복사 또는 PDF 변환</td><td>표가 많으면 표만 따로 복사하는 편이 더 정확합니다.</td></tr>
+        <tr><td>엑셀 (XLSX)</td><td>파일 그대로 업로드</td><td>시트를 빼지 마십시오. 관련 시트를 하나 빠뜨리면 결론이 뒤집힙니다.</td></tr>
+        <tr><td>PDF</td><td>파일 그대로 업로드</td><td>스캔본이나 이미지로 된 PDF는 글자를 읽지 못할 수 있습니다.</td></tr>
+        <tr><td>공문 · 이메일</td><td>본문만 복사</td><td>발신자·수신자·연락처는 지우고 넣으십시오.</td></tr>
+        <tr><td>이미지 · 화면 캡처</td><td>업로드 가능</td><td>표가 들어간 캡처는 숫자를 잘못 읽는 일이 잦습니다. 표는 텍스트로 주십시오.</td></tr>
+        <tr><td>시스템 내려받기 자료</td><td>CSV로 받아서 업로드</td><td>엑셀보다 CSV가 더 정확하게 읽힙니다.</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <p><strong>서식은 버리고 내용만 주는 것이 정답입니다.</strong> AI는 자간도 장평도 읽지 않습니다.
+      문서를 예쁘게 만들어서 올릴 이유가 없고, 오히려 복잡한 서식은 표 구조를 망가뜨립니다.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="tools">
+    <h2>AI 도구, 네 갈래</h2>
+    <p class="h2sub">이름으로 외우면 헷갈립니다. ‘무엇을 맡길 수 있는가’로 나누면 정리됩니다.</p>
+
+    <h3>① 대화형 생성형 AI — ChatGPT · Claude · Gemini</h3>
+    <p>묻고 답하는 방식입니다. 내가 준 자료와 모델이 이미 배운 지식을 섞어 답하기 때문에,
+      원자료를 주지 않으면 그럴듯하게 지어냅니다. 강의에서 본 환각이 여기서 나옵니다.</p>
+    <table>
+      <thead><tr><th style="width:16%"></th><th>ChatGPT</th><th>Claude</th><th>Gemini</th></tr></thead>
+      <tbody>
+        <tr><td>한글 파일</td><td>환경에 따라 다름</td><td class="no">미지원</td><td class="yes">지원 형식에 포함</td></tr>
+        <tr><td>잘하는 일</td><td>엑셀 계산·차트 생성, 폭넓은 작업</td><td>긴 문서 읽기, 안정적인 문체</td><td>구글 문서·메일 연동</td></tr>
+        <tr><td>연구행정에서</td><td>추진현황 정리, 통계, 시각화</td><td>규정 비교, 보고서 초안</td><td>한글 문서 검토, 메일·일정</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <p>세 도구의 우열은 작업마다 다르고 자주 뒤집힙니다. 어느 것이 더 좋은지 알아보는 데 시간을 쓰기보다,
+      <strong>같은 지시문을 두 도구에 넣고 어느 결과가 원자료에 더 충실한지 보는 편</strong>이 훨씬 빠릅니다.
+      강의에서 배운 여섯 요소는 세 도구에서 똑같이 작동합니다.</p>
+    </div>
+
+    <h3>② 문서 기반 AI — NotebookLM</h3>
+    <p>“업무 지침과 규정을 주제별로 올려두고, 그 문서 안의 근거로 답하게 하고 싶다”고 적어 주신 분이 계셨습니다.
+      그 요청에 정확히 대응하는 도구가 이것입니다.</p>
+    <table>
+      <thead><tr><th style="width:26%">특징</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td>선택한 소스를 근거로 답합니다</td><td>답변을 여러분이 노트북에 넣은 소스에 근거해 생성합니다.</td></tr>
+        <tr><td>출처를 함께 표시합니다</td><td>답변마다 어느 자료 어느 부분에서 나왔는지 표시되어 검증이 수월합니다.</td></tr>
+        <tr><td>무료 요금제가 있습니다</td><td>무료로도 쓸 수 있고, 유료 플랜도 따로 있습니다.</td></tr>
+      </tbody>
+    </table>
+    <p><strong>연구행정에서 이렇게 씁니다.</strong> 연구관리규정·지침·매뉴얼·편람을 한 노트북에 모아 두고
+      “이 경우 어느 조항이 적용됩니까”라고 물으면 근거 문장과 함께 답이 옵니다.
+      신규 담당자 인수인계 자료로도 유용합니다.</p>
+    <div class="note warn">
+      <p>구글도 <strong>AI가 실수할 수 있다</strong>고 안내합니다. 출처 표시는 검증을 쉽게 해줄 뿐 검증을 대신하지 않습니다.
+      올려둔 규정이 최신본인지 확인하는 일과 무엇을 올려도 되는지 판단하는 일은 여전히 사람의 몫이며, 자료 입력 기준은 여기서도 그대로 적용됩니다.</p>
+    </div>
+
+    <h3>③ AI 에이전트 — Genspark · Manus</h3>
+    <p>목표만 주면 여러 단계를 스스로 밟습니다. 검색하고, 정리하고, 결과물까지 만듭니다.
+      올해 기술 흐름의 중심에 있는 유형입니다.</p>
+    <table>
+      <thead><tr><th style="width:16%"></th><th>Genspark</th><th>Manus</th></tr></thead>
+      <tbody>
+        <tr><td>성격</td><td>리서치와 결과물 제작을 한곳에서 처리하는 작업 공간</td><td>여러 단계 작업을 스스로 계획하고 실행하는 위임형</td></tr>
+        <tr><td>잘하는 일</td><td>슬라이드·문서·시트·이미지 제작</td><td>폭넓은 조사, 브라우저 작업, 자료 수집</td></tr>
+        <tr><td>언제 쓰나</td><td>결과물이 바로 필요한 단발성 작업</td><td>“알아서 해 두세요” 하고 맡기고 싶은 작업</td></tr>
+      </tbody>
+    </table>
+    <div class="note warn">
+      <p><strong>쓰기 전에 반드시 알아야 할 세 가지</strong></p>
+      <p>하나, 스스로 웹을 돌아다니며 외부 사이트에 접속하고 자료를 주고받습니다. <strong>비공개 자료는 절대 넣지 마십시오.</strong><br>
+      둘, 여러 단계를 혼자 진행하기 때문에 중간에 한 번 잘못 판단하면 결과물 전체가 어긋납니다.<br>
+      셋, 크레딧으로 과금됩니다. 무료 크레딧은 금방 소진됩니다.</p>
+      <p>연구행정에서는 <strong>공개 자료 기반 동향조사와 타 기관 사례 수집</strong> 정도가 안전한 범위입니다.</p>
+    </div>
+
+    <h3>④ 업무 자동화 — 그리고 내부망 AI</h3>
+    <p>Make·Zapier·Power Automate 같은 도구는 “메일이 오면 표에 기록하고 알림을 보낸다”처럼
+      정해진 절차를 사람 없이 반복 실행합니다. 다만 공공 내부망에서는 대부분 사용할 수 없습니다.</p>
+    <p>내부망 AI 활용법을 물어보신 분이 세 분 계셨습니다. 보안 면에서는 가장 안전한 선택이고,
+      대신 기능은 외부 도구보다 제한적입니다. 강의에서 화면에 띄울 수 없어 실습은 못 했지만,
+      <strong>지시하는 방법은 완전히 같습니다.</strong></p>
+    <div class="note ok">
+      <p>역할 · 목적 · 맥락 · 작업 · 제약 · 출력형식.
+      이 여섯 개는 내부망 AI에서도, 앞으로 새로 나올 어떤 도구에서도 그대로 씁니다.
+      <strong>도구는 바뀌지만 일을 시키는 방법은 바뀌지 않습니다.</strong></p>
+      <p>그리고 현실적인 자동화는 강의에서 만든 ‘재사용 프롬프트 + 단계 분해표’입니다.
+      새 시스템을 도입하지 않고 내일 바로 쓸 수 있는 유일한 방법입니다.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="free">
+    <h2>무료로 어디까지</h2>
+    <p class="h2sub">무료 버전 활용 요령과 유료 전환 시점을 물어보신 네 분께 드리는 답입니다.</p>
+    <table>
+      <thead><tr><th style="width:34%">무료로 충분한 것</th><th>유료가 필요해지는 지점</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>문서 요약, 회의록 정리, 보고서 초안,<br>조문 비교, 프롬프트 다듬기.<br>
+              NotebookLM은 전부 무료입니다.<br><br>
+              <strong>강의에서 배운 것의 대부분이 여기 들어갑니다.</strong></td>
+          <td>하루 사용량 한도에 자주 걸릴 때<br>
+              대용량 파일이나 여러 파일을 한꺼번에 다룰 때<br>
+              고급 데이터 분석을 반복할 때<br>
+              에이전트에게 큰 작업을 맡길 때</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>무료로 오래 쓰는 네 가지 요령</h3>
+    <table>
+      <thead><tr><th style="width:7%">순서</th><th>요령</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>한 도구에 몰아 쓰지 말고 무료 계정 두세 개를 용도별로 나눠 씁니다. 보고서용, 데이터용, 규정 검토용으로 갈라 두면 한도에 덜 걸립니다.</td></tr>
+        <tr><td>2</td><td>긴 자료는 한 번에 넣지 말고 나눠서 넣습니다. 한 번에 넣으면 한도 소모가 큽니다.</td></tr>
+        <tr><td>3</td><td>새 대화를 열지 말고 같은 대화에서 이어서 고칩니다. 자료를 다시 넣지 않아도 되고, 앞의 맥락이 유지됩니다.</td></tr>
+        <tr><td>4</td><td>슬라이드나 문서 제작은 소모가 가장 큽니다. 내용을 텍스트로 확정한 뒤 마지막에 한 번만 돌리십시오.</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">요금과 사용량 한도는 자주 바뀝니다. 결제 전에 각 서비스의 공식 요금 페이지를 확인하십시오.</p>
+  </section>
+
+  <!-- 5 -->
+  <section id="match">
+    <h2>업무별로 무엇을 쓸까</h2>
+    <p class="h2sub">사전설문에 적어 주신 업무를 그대로 놓고 정리했습니다.</p>
+    <table>
+      <thead><tr><th style="width:32%">업무</th><th style="width:22%">먼저 써볼 것</th><th>이유</th></tr></thead>
+      <tbody>
+        <tr><td>부서장 보고자료 초안</td><td>대화형 AI</td><td>여러 자료를 한 번에 읽고 구조를 잡아줍니다.</td></tr>
+        <tr><td>회의록 정리, 후속조치 추출</td><td>대화형 AI</td><td>강의 실습 1에서 만든 프롬프트를 그대로 씁니다.</td></tr>
+        <tr><td>엑셀 데이터 정리·통계·차트</td><td>ChatGPT</td><td>파일을 직접 계산하고 차트까지 만듭니다.</td></tr>
+        <tr><td>규정·지침 여러 건 비교</td><td>대화형 AI (원문 붙여넣기)</td><td>원문을 주면 지어내지 않습니다. 부칙까지 함께 넣으십시오.</td></tr>
+        <tr><td>문서 안에서 근거 조항 찾기</td><td>NotebookLM</td><td>출처 문장을 함께 표시해 줍니다.</td></tr>
+        <tr><td>공개자료 동향조사와 결과물 제작</td><td>AI 에이전트</td><td>검색부터 정리까지 이어서 해줍니다.</td></tr>
+        <tr><td>매달 반복되는 취합·정리</td><td>강의에서 만든 재사용 프롬프트</td><td>도구를 새로 배울 필요가 없습니다.</td></tr>
+        <tr><td class="no">평가위원 후보군 추출</td><td class="no">어떤 도구도 쓰지 않습니다</td><td class="no">개인정보이자 미공개 심사자료입니다.</td></tr>
+        <tr><td class="no">한글 자간·장평 맞추기</td><td class="no">AI가 할 일이 아닙니다</td><td class="no">한글의 스타일 기능으로 잡는 편이 훨씬 빠릅니다.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6 -->
+  <section id="prompts">
+    <h2>복사해서 쓰는 프롬프트</h2>
+    <p class="h2sub">대괄호 안을 여러분 업무에 맞게 바꾸신 뒤 자료와 함께 넣으십시오.
+      마지막 제약 문장은 지우지 마십시오. 그 문장이 지어내기를 막습니다.</p>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">01</span><span class="ptitle">회의록 정리</span>
+        <span class="pwhen">회의록 원문을 붙여넣고 실행합니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>당신은 연구사업 행정업무를 지원하는 분석 보조자입니다.
+부서장 보고자료를 작성하기 위해 첨부한 회의록을 정리합니다.
+
+다음 항목을 구분해 표로 작성해 주세요.
+① 결정사항 ② 미결사항 ③ 담당자별 후속조치 ④ 일정 및 기한 ⑤ 부서장 확인 필요사항
+
+자료에 없는 사실은 추가하지 말고, 불명확한 내용은 '확인 필요'로 표시하세요.
+각 항목마다 근거가 된 원문 문장을 함께 표시하세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">02</span><span class="ptitle">여러 자료에서 사실만 추출</span>
+        <span class="pwhen">보고서를 쓰기 전 첫 단계입니다. 이걸 건너뛰면 사실과 해석이 섞입니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>첨부한 자료들에서 확인 가능한 사실만 추출해 아래 4개 열의 표로 정리해 주세요.
+
+구분 | 확인된 내용 | 근거(자료명과 위치) | 확인 필요
+
+[구분 항목: 목표 / 추진현황 / 주요성과 / 이슈 / 향후일정]
+
+자료에 근거가 없는 내용은 만들어 쓰지 말고 '확인 불가'로 적으세요.
+두 자료의 수치가 서로 다르면 양쪽 값을 모두 적고 '확인 필요'에 불일치라고 표시하세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">03</span><span class="ptitle">부서장 보고 초안</span>
+        <span class="pwhen">02번의 결과가 나온 다음, 같은 대화에서 이어서 실행합니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>위에서 정리한 사실 표를 근거로 A4 1장 분량의 부서장 보고자료 초안을 작성해 주세요.
+
+구성: 핵심요약 → 추진현황 → 주요성과 → 이슈 → 조치 및 요청사항
+문체: 공문서 문체(~임, ~하였음)로 작성
+
+'확인 불가'로 표시된 항목은 보고서에 수치로 쓰지 말고,
+'확인 중' 또는 '자료 보완 필요'로 표기하세요.
+추정이나 전망은 넣지 마세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">04</span><span class="ptitle">기관장 1분 보고로 압축</span>
+        <span class="pwhen">03번 결과에 이어서 실행합니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>방금 만든 보고서를 기관장에게 1분 안에 구두 보고할 수 있는 3줄로 줄여 주세요.
+
+1줄: 전체 추진 상황
+2줄: 가장 큰 위험 요소
+3줄: 의사결정이 필요한 사항
+
+각 줄은 40자 이내로 하고, 숫자는 반드시 근거가 있는 것만 쓰세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">05</span><span class="ptitle">엑셀 자료 정리·표준화</span>
+        <span class="pwhen">여러 시트가 있으면 하나도 빼지 말고 전부 올리십시오</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>첨부한 파일의 모든 시트를 읽고 하나의 통합표로 정리해 주세요.
+
+표준화 규칙
+- 날짜는 YYYY-MM-DD로 통일
+- 금액 단위는 백만원으로 통일하고, 원 단위로 입력된 값은 환산 후 표시
+- 부서명·기관명 표기가 다른 경우 같은 대상인지 판단하지 말고 원문 그대로 두되 별도로 목록화
+- 숫자가 문자로 저장된 항목은 숫자로 변환
+
+임의로 값을 채우거나 추정하지 마세요. 빈칸은 빈칸으로 두세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">06</span><span class="ptitle">데이터 오류 점검</span>
+        <span class="pwhen">05번 다음에 반드시 실행하십시오. 강의에서 36개가 나온 그 지시입니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>첨부한 자료에서 아래 유형의 오류·불일치·결측을 각각 나누어 찾아 표로 정리해 주세요.
+
+① 중복 입력된 행
+② 날짜 논리 오류(시작일이 종료일보다 늦은 경우 등)
+③ 시계열상 논리적으로 불가능한 값(누적 수치가 감소하는 경우 등)
+④ 합계 불일치(구성 항목의 합이 총계와 다른 경우)
+⑤ 단위 혼재 및 자료형 오류
+⑥ 표기 불일치(같은 대상이 다르게 적힌 경우)
+⑦ 결측값
+
+각 항목마다 어느 시트 몇 번째 행인지 위치를 함께 적어 주세요.
+확실하지 않은 것은 '확인 필요'로 분류하세요.</pre></div>
+    </div>
+
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">07</span><span class="ptitle">통계 계산과 차트 만들기</span>
+        <span class="pwhen">05·06번으로 자료를 정리한 다음 같은 대화에서 이어서 실행합니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>정리된 표를 기준으로 아래 세 가지를 계산해 주세요.
+① 평균 추진률 ② 평균 집행률 ③ 지연 과제 수
+
+계산할 때 다음을 반드시 함께 알려 주세요.
+- 어떤 기준으로 계산했는지
+- 제외한 행이 있다면 무엇을 왜 제외했는지 (중복행·결측값 포함)
+
+그다음 관리자가 한눈에 보기 좋은 차트 두 개를 제안하고,
+그중 하나를 만들어 주세요.
+
+값을 추정해서 채우지 마세요. 계산이 불가능한 항목은 '산정 불가'로 표시하세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">08</span><span class="ptitle">과제 관리표 만들기</span>
+        <span class="pwhen">먼저 “어떤 항목으로 관리하면 좋을지 제안해 달라”고 물어본 다음 실행하면 더 좋습니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>첨부한 자료를 근거로 과제 관리표를 만들어 주세요.
+
+열 구성: 과제 | 담당자 | 현재상태 | 다음일정 | 기한 | 이슈 | 위험도 | 다음 조치 | 확인 필요
+
+작성 규칙
+- 자료에 없는 항목은 비워 두고 '확인 필요'에 사유를 적으세요
+- 위험도는 높음/중간/낮음으로 표시하고, 그렇게 판단한 근거를 함께 쓰세요
+- 진행상태와 다른 항목이 서로 모순되는 경우 별도로 표시하세요</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">09</span><span class="ptitle">우선순위 선정</span>
+        <span class="pwhen">“급한 것 알려줘”라고만 하면 근거 없는 순위표가 나옵니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>이번 주에 먼저 확인해야 할 [3]개 과제를 선정해 주세요.
+
+각각에 대해 다음 네 가지를 함께 제시하세요.
+① 선정기준 ② 근거자료(어느 자료 어느 항목인지) ③ 불확실한 부분 ④ 추가로 확인이 필요한 정보
+
+순위만 매기지 말고 왜 그 순서인지 설명하세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">10</span><span class="ptitle">신구조문 대비표</span>
+        <span class="pwhen">개정 전·후 원문을 함께 붙여넣습니다. 부칙을 빠뜨리지 마십시오</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>아래에 현행 규정과 개정안 원문을 붙여넣습니다.
+이 두 텍스트만을 근거로 신구조문 대비표를 작성해 주세요.
+
+열 구성: 조문 | 현행 | 개정안 | 변경유형 | 핵심 변경내용
+
+변경유형은 신설 / 삭제 / 수정(수치) / 수정(자구) / 복합으로 분류하세요.
+한 조문에 여러 변경이 있으면 빠짐없이 나열하고 몇 개인지 세어 주세요.
+부칙의 시행일과 경과조치를 반드시 별도 항목으로 정리하세요.
+
+붙여넣은 원문에 없는 내용은 절대 추가하지 마세요.
+
+[현행]
+(여기에 붙여넣기)
+
+[개정안]
+(여기에 붙여넣기)</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">11</span><span class="ptitle">개정에 따른 업무영향 검토</span>
+        <span class="pwhen">09번 다음에 이어서 실행합니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>위 대비표를 근거로 우리 부서 업무에 미치는 영향을 정리해 주세요.
+
+열 구성: 변경사항 | 영향받는 업무 | 영향 정도 | 준비사항 | 확인 필요
+
+추가 질문 세 가지에도 답해 주세요.
+① 자구 수정처럼 보이지만 업무 영향이 큰 조문은 무엇이며 왜 그런가
+② 부칙의 경과조치에 따라 현재 진행 중인 건에 적용되는 규정은 현행인가 개정인가
+③ 이 개정으로 우리 부서의 업무량이 늘어나는 지점은 어디인가
+
+법적 판단이 필요한 부분은 단정하지 말고 '담당자 확인 필요'로 표시하세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">12</span><span class="ptitle">반복업무 단계 분해</span>
+        <span class="pwhen">매주·매월 반복하는 업무 하나를 골라 실행합니다</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>제가 매[월] 반복하는 업무는 [월간 추진실적 취합 및 보고]입니다.
+
+이 업무를 단계별로 분해하고, 각 단계마다 아래를 구분해 표로 정리해 주세요.
+① AI가 할 수 있는 일 ② 사람이 판단해야 하는 일 ③ 그렇게 나눈 이유
+
+그리고 AI가 맡을 수 있는 단계에 대해서는
+역할·목적·맥락·작업·제약·출력형식을 갖춘 프롬프트를 각각 만들어 주세요.
+
+책임이 따르는 최종 확인 단계는 사람이 하는 것으로 두세요.</pre></div>
+    </div>
+
+    <div class="pcard">
+      <div class="phead"><span class="pnum">13</span><span class="ptitle">결과 검증 요청</span>
+        <span class="pwhen">보고서를 올리기 전 마지막에 한 번 돌리십시오</span></div>
+      <div class="pbody"><button class="copy" type="button">복사</button><pre>방금 작성한 결과물을 스스로 점검해 주세요.
+
+① 원자료에 근거가 없는 문장만 따로 뽑아 표시하세요
+② 사실과 해석이 섞인 문장을 찾아 구분해 주세요
+③ 숫자마다 어느 자료 어느 항목에서 나왔는지 출처를 표시하세요
+④ 제가 준 자료 중 사용하지 않은 것이 있으면 알려 주세요
+
+점검 결과를 표로 정리하고, 수정본은 따로 요청할 때까지 만들지 마세요.</pre></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="check">
+    <h2>검증과 입력 기준</h2>
+    <p class="h2sub">강의에서 쓴 두 장을 다시 옮겨 둡니다. 인쇄해서 책상에 두시면 됩니다.</p>
+
+    <h3>AI 결과 검증 체크리스트</h3>
+    <table>
+      <thead><tr><th style="width:7%"></th><th style="width:24%">확인할 것</th><th>무엇을 보나</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>수치 근거</td><td>이 숫자는 어느 자료 어느 줄에서 왔는가. 출처를 대지 못하면 지어낸 것입니다.</td></tr>
+        <tr><td>2</td><td>사실과 해석</td><td>쓰여 있는 것과 추론한 것이 섞이지 않았는가. ‘~로 보인다’ ‘~로 파악됨’을 의심하십시오.</td></tr>
+        <tr><td>3</td><td>누락</td><td>빠진 자료, 빠진 대상, 빠진 조문은 없는가. 자료를 덜 주면 답이 뒤집힙니다.</td></tr>
+        <tr><td>4</td><td>최신성</td><td>이 자료가 현재 기준으로 맞는가. 변경 이력과 시행일을 확인하십시오.</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <p><strong>AI가 만든 것에 서명하는 사람은 AI가 아니라 담당자입니다.</strong></p>
+    </div>
+
+    <h3>자료 입력 기준</h3>
+    <p class="muted">기관 내부지침이 아래 기준보다 엄격한 경우 내부지침을 따릅니다.</p>
+    <div class="lights">
+      <div class="light g">
+        <h4>넣어도 되는 것</h4>
+        <ul>
+          <li>이미 공개된 자료</li>
+          <li>법령·고시 원문</li>
+          <li>일반 문서 서식</li>
+          <li>가상으로 만든 예시 자료</li>
+        </ul>
+      </div>
+      <div class="light y">
+        <h4>조건부</h4>
+        <ul>
+          <li>부서 내부 회의록</li>
+          <li>추진현황·일정표</li>
+        </ul>
+        <p style="margin:8px 0 0;font-size:13.5px">기관명·개인명·고유번호를 가명 처리한 뒤 넣습니다.</p>
+      </div>
+      <div class="light r">
+        <h4>넣지 않는 것</h4>
+        <ul>
+          <li>미공개 심사·평가 자료</li>
+          <li>평가위원 명단 등 개인정보</li>
+          <li>대외비 지정 자료</li>
+          <li>미공표 연구결과</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note warn">
+      <p>판단이 애매하면 넣지 않습니다. <strong>애매하다는 느낌 자체가 이미 신호입니다.</strong></p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section id="etc">
+    <h2>나머지 질문에 짧게</h2>
+    <p class="h2sub">설문에 주신 질문 가운데 위에서 다루지 못한 것들입니다.</p>
+
+    <div class="qa">
+      <p class="q">작성 형식(자간 등) 자동화는 어떻게 합니까</p>
+      <p class="a">생성형 AI는 한글의 자간·장평·들여쓰기를 직접 제어하지 못합니다. 이건 AI가 잘하는 영역이 아닙니다.
+        <strong>내용은 AI가 만들고 서식은 한글의 스타일 기능으로 잡는 것</strong>이 맞습니다.
+        부서 표준 서식을 스타일로 한 번 등록해 두면 그 뒤로는 클릭 한 번입니다. 두 가지를 한 도구로 하려 하면 오히려 시간이 더 듭니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">각 AI마다 특화된 업무가 따로 있습니까</p>
+      <p class="a">경향은 있지만 생각보다 크지 않고 자주 뒤집힙니다. 위 4장의 비교표 정도로 감을 잡으시고,
+        중요한 작업은 두 도구에 같은 지시를 넣어 비교해 보십시오.
+        판단 기준은 “어느 쪽이 더 그럴듯한가”가 아니라 <strong>“어느 쪽이 원자료에 더 충실한가”</strong>입니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">여러 조항을 비교해서 어느 조항에 해당하는지 보고 싶습니다</p>
+      <p class="a">7장의 09번 프롬프트를 쓰시되, 비교할 조문의 <strong>원문을 모두 붙여넣는 것</strong>이 전제입니다.
+        조문 번호만 대고 물으면 없는 조문을 만들어 냅니다. 여러 부처 소관 법령을 비교하실 때는
+        국가법령정보센터에서 각각의 원문을 가져와 함께 넣으십시오. 규정이 많고 반복적이면 NotebookLM에 모아 두는 편이 낫습니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">데이터 시각화는 어떻게 합니까</p>
+      <p class="a">ChatGPT에 파일을 올리고 “이 표를 막대그래프로 그려 주세요”처럼 말하면 됩니다.
+        파이썬이나 R을 배우실 필요는 없습니다. 다만 <strong>그래프를 그리기 전에 데이터를 먼저 정리하십시오.</strong>
+        정리되지 않은 자료로 그린 그래프는 틀린 그림을 그럴듯하게 보여줄 뿐입니다. 7장의 05번과 06번을 먼저 돌리시면 됩니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">파일을 첨부할 때 어떻게 주는 것이 가장 좋습니까</p>
+      <p class="a">세 가지만 지키시면 됩니다. 하나, <strong>관련된 자료는 빠짐없이 함께</strong> 넣습니다.
+        강의에서 본 것처럼 시트 하나를 빠뜨리면 결론이 뒤집힙니다. 둘, 표는 이미지가 아니라 텍스트나 파일로 줍니다.
+        셋, 자료를 넣을 때 <strong>“이 자료는 무엇이고 어떤 관계인지”를 한 줄로 설명</strong>해 주십시오. 정확도가 눈에 띄게 올라갑니다.</p>
+    </div>
+
+    <div class="qa">
+      <p class="q">내부망 AI에서도 오늘 배운 것을 쓸 수 있습니까</p>
+      <p class="a">그대로 쓰실 수 있습니다. 역할·목적·맥락·작업·제약·출력형식 여섯 요소는 특정 도구의 기능이 아니라
+        <strong>일을 시키는 방법</strong>이기 때문입니다. 다만 도구마다 한 번에 넣을 수 있는 분량과 파일 형식이 다르므로,
+        긴 자료는 나눠 넣고 파일이 안 올라가면 본문을 복사해 붙여넣으십시오.</p>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>이 문서는 「연구행정 업무 효율성 제고를 위한 생성형 AI 활용 교육」(2026. 9. 4., 오송보건의료행정타운) 보충자료입니다.</p>
+    <p>본문에 나오는 도구의 기능·요금·지원 형식은 자주 바뀝니다. 중요한 판단 전에는 각 서비스의 공식 안내를 확인하십시오.
+      법령·규정 관련 내용은 국가법령정보센터의 최신 원문과 담당자의 검토가 최종 기준입니다.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var text = btn.parentElement.querySelector('pre').innerText;
+    var done = function(){
+      btn.textContent = '복사했습니다';
+      btn.dataset.done = '1';
+      setTimeout(function(){ btn.textContent = '복사'; btn.dataset.done = ''; }, 1800);
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch(e){ btn.textContent = '직접 선택해 주세요'; setTimeout(function(){ btn.textContent='복사'; }, 1800); }
+      document.body.removeChild(ta);
+    }
+  });
+});
+</script>
+</body>
+</html>
